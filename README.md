@@ -7,14 +7,14 @@ An interactive CLI that scaffolds a production-ready Next.js project with your p
 ## Quick start
 
 ```bash
-npx create-next-template
+npx @codabytez/create-next-template@latest
 ```
 
 Or with a specific package manager:
 
 ```bash
-pnpm dlx create-next-template
-bunx create-next-template
+pnpm dlx @codabytez/create-next-template
+bunx @codabytez/create-next-template
 ```
 
 ---
