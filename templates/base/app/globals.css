@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@theme {
+  /* ================================
+   * Colors — add your custom palette here
+   * ================================ */
+
+  /* --color-primary: #your-color;
+  --color-secondary: #your-color;
+  --color-accent: #your-color;
+  --color-background: #your-color;
+  --color-foreground: #your-color; */
+
+  /* ================================
+   * Typography
+   * ================================ */
+
+  /* --font-sans: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace; */
+
+  /* ================================
+   * Spacing / Sizing overrides
+   * ================================ */
+
+  /* --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px; */
+}

@@ -1,0 +1,11 @@
+echo '🚀🔍 Running final checks before pushing...'
+
+echo '📦 Building the project...'
+pnpm run build ||
+(
+    echo '❌🔥 Build failed! Fix the errors above before pushing.'
+    false
+)
+
+echo '✅ Build passed! Pushing to remote...'
+echo '🎉 Great work!'

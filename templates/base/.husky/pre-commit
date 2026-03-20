@@ -1,0 +1,19 @@
+echo '🏗️👷 Running checks on your code before committing 🔍🧐'
+
+echo '🎨✨ Checking formatting...'
+pnpm run check-format ||
+(
+    echo '🤢🤮 Your formatting is off. Running Prettier...'
+    pnpm run format
+    git add .
+    echo '✨ Formatting fixed and changes staged.'
+)
+
+echo '🔍 Running lint-staged...'
+pnpm exec lint-staged ||
+(
+    echo '😤 ESLint or type errors found. Fix the issues above and try again.'
+    false
+)
+
+echo '✅ All checks passed! Committing...'
