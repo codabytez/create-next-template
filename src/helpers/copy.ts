@@ -1,7 +1,7 @@
 import fs from "fs-extra";
 import path from "path";
 
-const TEMPLATES_DIR = path.join(__dirname, "../../templates");
+const TEMPLATES_DIR = path.join(__dirname, "../templates");
 
 export async function copyTemplate(
   templateName: string,
