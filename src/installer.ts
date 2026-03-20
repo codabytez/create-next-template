@@ -7,6 +7,7 @@ import { mergeEnvExamples } from "./helpers/env";
 import { installDependencies, writePackageJson } from "./helpers/packages";
 import { runCommand } from "./helpers/run";
 import { generateLayout } from "./generators/layout";
+import { generateReadme } from "./generators/readme";
 import type { InstallerOptions } from "./types";
 
 const FEATURE_TEMPLATE_MAP: Record<string, string> = {
@@ -57,6 +58,7 @@ export async function runInstaller({
   }
 
   await generateLayout(projectPath, features);
+  await generateReadme(projectPath, projectName, packageManager, features);
   await mergeEnvExamples(projectPath, features);
 
   // Make husky hooks executable
@@ -90,6 +92,9 @@ export async function runInstaller({
   // 5. Initialize git
   s.start("Initializing git repository");
   await runCommand("git", ["init"], projectPath);
+  // Clear any stale index (e.g. from a previous failed run) so that
+  // .gitignore is applied cleanly. Safe to ignore errors on a fresh repo.
+  await runCommand("git", ["rm", "-r", "--cached", "--quiet", "."], projectPath).catch(() => {});
   await runCommand("git", ["add", "-A"], projectPath);
   await runCommand(
     "git",
