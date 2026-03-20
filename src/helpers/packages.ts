@@ -13,68 +13,68 @@ interface PackageJson {
 }
 
 const BASE_DEPS: Record<string, string> = {
-  next: "^15.0.0",
-  react: "^18.3.0",
-  "react-dom": "^18.3.0",
+  next: "^16.2.0",
+  react: "^19.2.4",
+  "react-dom": "^19.2.4",
   clsx: "^2.1.1",
-  "tailwind-merge": "^2.4.0",
-  "class-variance-authority": "^0.7.0",
-  zod: "^3.23.0",
-  "date-fns": "^3.6.0",
-  "cookies-next": "^4.2.1",
-  "lucide-react": "^0.400.0",
+  "tailwind-merge": "^3.5.0",
+  "class-variance-authority": "^0.7.1",
+  zod: "^4.3.6",
+  "date-fns": "^4.1.0",
+  "cookies-next": "^6.1.1",
+  "lucide-react": "^0.577.0",
 };
 
 const BASE_DEV_DEPS: Record<string, string> = {
-  typescript: "^5.5.0",
-  "@types/node": "^20.14.0",
-  "@types/react": "^18.3.0",
-  "@types/react-dom": "^18.3.0",
-  tailwindcss: "^4.0.0",
-  "@tailwindcss/postcss": "^4.0.0",
-  postcss: "^8.4.0",
+  typescript: "^5.9.3",
+  "@types/node": "^25.5.0",
+  "@types/react": "^19.2.14",
+  "@types/react-dom": "^19.2.3",
+  tailwindcss: "^4.2.2",
+  "@tailwindcss/postcss": "^4.2.2",
+  postcss: "^8.5.8",
   // Code quality
-  "@eslint/eslintrc": "^3.2.0",
-  prettier: "^3.3.0",
-  "eslint-config-prettier": "^9.1.0",
-  "eslint-plugin-prettier": "^5.2.0",
+  "@eslint/eslintrc": "^3.3.5",
+  prettier: "^3.8.1",
+  "eslint-config-prettier": "^10.1.8",
+  "eslint-plugin-prettier": "^5.5.5",
   // Git hooks
-  husky: "^9.1.0",
-  "lint-staged": "^15.2.0",
+  husky: "^9.1.7",
+  "lint-staged": "^16.4.0",
 };
 
 const FEATURE_DEPS: Record<string, Record<string, string>> = {
   animations: {
-    "framer-motion": "^11.3.0",
+    "framer-motion": "^12.38.0",
   },
   dataFetching: {
-    "@tanstack/react-query": "^5.51.0",
-    axios: "^1.7.0",
+    "@tanstack/react-query": "^5.91.3",
+    axios: "^1.13.6",
   },
   forms: {
-    "react-hook-form": "^7.52.0",
-    "@hookform/resolvers": "^3.9.0",
+    "react-hook-form": "^7.71.2",
+    "@hookform/resolvers": "^5.2.2",
   },
   extraIcons: {
-    "iconsax-reactjs": "^1.0.1",
+    "iconsax-reactjs": "^0.0.8",
   },
   auth: {
-    "@clerk/nextjs": "^5.2.0",
+    "@clerk/nextjs": "^7.0.6",
   },
   prisma: {
-    "@prisma/client": "^5.16.0",
+    "@prisma/client": "^7.5.0",
   },
   convex: {
-    convex: "^1.13.0",
+    convex: "^1.34.0",
   },
   appwrite: {
-    appwrite: "^16.0.0",
+    appwrite: "^23.0.0",
   },
 };
 
 const FEATURE_DEV_DEPS: Record<string, Record<string, string>> = {
   prisma: {
-    prisma: "^5.16.0",
+    prisma: "^7.5.0",
   },
 };
 
