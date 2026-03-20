@@ -26,21 +26,23 @@ export async function runInstaller({
   projectPath,
   packageManager,
   features,
+  inPlace,
 }: InstallerOptions): Promise<void> {
   const s = p.spinner();
 
-  if (await fs.pathExists(projectPath)) {
-    const overwrite = await p.confirm({
-      message: `Directory "${projectName}" already exists. Overwrite?`,
-    });
-    if (!overwrite || p.isCancel(overwrite)) {
-      p.cancel("Operation cancelled");
-      process.exit(0);
+  if (!inPlace) {
+    if (await fs.pathExists(projectPath)) {
+      const overwrite = await p.confirm({
+        message: `Directory "${projectName}" already exists. Overwrite?`,
+      });
+      if (!overwrite || p.isCancel(overwrite)) {
+        p.cancel("Operation cancelled");
+        process.exit(0);
+      }
+      await fs.remove(projectPath);
     }
-    await fs.remove(projectPath);
+    await fs.ensureDir(projectPath);
   }
-
-  await fs.ensureDir(projectPath);
 
   // 1. Scaffold
   s.start("Scaffolding project structure");
@@ -104,7 +106,7 @@ export async function runInstaller({
   console.log();
   p.outro(
     chalk.green("✔ Project created successfully!\n\n") +
-      `  ${chalk.cyan("cd")} ${projectName}\n` +
+      (inPlace ? "" : `  ${chalk.cyan("cd")} ${projectName}\n`) +
       (hasShadcn
         ? `  ${chalk.cyan("npx shadcn@latest init")}   ${chalk.gray("# set up shadcn/ui")}\n`
         : "") +

@@ -3,4 +3,5 @@ export interface InstallerOptions {
   projectPath: string;
   packageManager: string;
   features: string[];
+  inPlace: boolean;
 }

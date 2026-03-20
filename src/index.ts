@@ -4,13 +4,41 @@ import chalk from "chalk";
 import path from "path";
 import { runInstaller } from "./installer";
 
+const args = process.argv.slice(2);
+
+if (args.includes("--help") || args.includes("-h")) {
+  console.log(
+    `\n  ${chalk.bgCyan(chalk.black(" create-next-template "))}\n\n` +
+      `  ${chalk.bold("Usage:")}\n` +
+      `    pnpx @codabytez/create-next-template ${chalk.green("[directory]")}\n\n` +
+      `  ${chalk.bold("Arguments:")}\n` +
+      `    ${chalk.green("directory")}   Where to scaffold the project.\n` +
+      `                Use ${chalk.cyan(".")} to scaffold into the current directory,\n` +
+      `                or omit to be prompted for a name.\n\n` +
+      `  ${chalk.bold("Options:")}\n` +
+      `    ${chalk.cyan("-h, --help")}  Show this help message\n\n` +
+      `  ${chalk.bold("Examples:")}\n` +
+      `    pnpx @codabytez/create-next-template\n` +
+      `    pnpx @codabytez/create-next-template ${chalk.green("my-app")}\n` +
+      `    pnpx @codabytez/create-next-template ${chalk.green(".")}\n`
+  );
+  process.exit(0);
+}
+
 async function main() {
   console.log();
   p.intro(chalk.bgCyan(chalk.black(" create-next-template ")));
 
+  const dirArg = args.find((a) => !a.startsWith("-"));
+  const inPlace = dirArg === ".";
+  const defaultName = inPlace
+    ? path.basename(process.cwd())
+    : dirArg ?? undefined;
+
   const projectName = await p.text({
     message: "What is your project name?",
     placeholder: "my-next-app",
+    initialValue: defaultName,
     validate(value) {
       if (!value) return "Project name is required";
       if (!/^[a-z0-9-_]+$/.test(value))
@@ -79,13 +107,16 @@ async function main() {
     );
   }
 
-  const projectPath = path.resolve(process.cwd(), projectName as string);
+  const projectPath = inPlace
+    ? process.cwd()
+    : path.resolve(process.cwd(), projectName as string);
 
   await runInstaller({
     projectName: projectName as string,
     projectPath,
     packageManager: packageManager as string,
     features: selectedFeatures,
+    inPlace,
   });
 }
 
