@@ -39,7 +39,6 @@ const BASE_DEV_DEPS: Record<string, string> = {
   "@eslint/eslintrc": "^3.3.5",
   prettier: "^3.8.1",
   "eslint-config-prettier": "^10.1.8",
-  "eslint-plugin-prettier": "^5.5.5",
   // Git hooks
   husky: "^9.1.7",
   "lint-staged": "^16.4.0",
