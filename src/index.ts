@@ -20,7 +20,7 @@ if (args.includes("--help") || args.includes("-h")) {
       `  ${chalk.bold("Examples:")}\n` +
       `    pnpx @codabytez/create-next-template\n` +
       `    pnpx @codabytez/create-next-template ${chalk.green("my-app")}\n` +
-      `    pnpx @codabytez/create-next-template ${chalk.green(".")}\n`
+      `    pnpx @codabytez/create-next-template ${chalk.green(".")}\n`,
   );
   process.exit(0);
 }
@@ -33,7 +33,7 @@ async function main() {
   const inPlace = dirArg === ".";
   const defaultName = inPlace
     ? path.basename(process.cwd())
-    : dirArg ?? undefined;
+    : (dirArg ?? undefined);
 
   const projectName = await p.text({
     message: "What is your project name?",
@@ -54,10 +54,10 @@ async function main() {
   const packageManager = await p.select({
     message: "Which package manager?",
     options: [
-      { value: "npm", label: "npm" },
       { value: "pnpm", label: "pnpm" },
       { value: "yarn", label: "yarn" },
       { value: "bun", label: "bun" },
+      { value: "npm", label: "npm" },
     ],
   });
 
@@ -82,9 +82,21 @@ async function main() {
       },
       { value: "extraIcons", label: "Extra Icons", hint: "iconsax-reactjs" },
       { value: "auth", label: "Auth", hint: "Clerk" },
-      { value: "prisma", label: "Database — Prisma", hint: "Prisma + PostgreSQL" },
-      { value: "convex", label: "Database — Convex", hint: "Convex real-time backend" },
-      { value: "appwrite", label: "Database — Appwrite", hint: "Appwrite BaaS" },
+      {
+        value: "prisma",
+        label: "Database — Prisma",
+        hint: "Prisma + PostgreSQL",
+      },
+      {
+        value: "convex",
+        label: "Database — Convex",
+        hint: "Convex real-time backend",
+      },
+      {
+        value: "appwrite",
+        label: "Database — Appwrite",
+        hint: "Appwrite BaaS",
+      },
       { value: "ui", label: "UI Components", hint: "shadcn/ui" },
     ],
     required: false,
@@ -99,11 +111,11 @@ async function main() {
 
   // Warn if multiple databases selected
   const dbChoices = ["prisma", "convex", "appwrite"].filter((db) =>
-    selectedFeatures.includes(db)
+    selectedFeatures.includes(db),
   );
   if (dbChoices.length > 1) {
     p.log.warn(
-      `You selected multiple databases (${dbChoices.join(", ")}). This is supported but may require manual configuration.`
+      `You selected multiple databases (${dbChoices.join(", ")}). This is supported but may require manual configuration.`,
     );
   }
 
