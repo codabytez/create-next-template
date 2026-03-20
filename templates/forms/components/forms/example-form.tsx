@@ -13,8 +13,8 @@ export function ExampleForm() {
     resolver: zodResolver(exampleSchema),
   });
 
-  async function onSubmit(data: ExampleFormValues) {
-    console.log(data);
+  async function onSubmit(_data: ExampleFormValues) {
+    // TODO: handle form submission
   }
 
   return (
