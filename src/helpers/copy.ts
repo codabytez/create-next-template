@@ -10,6 +10,14 @@ export async function copyTemplate(
   const templatePath = path.join(TEMPLATES_DIR, templateName);
   if (!(await fs.pathExists(templatePath))) return;
   await fs.copy(templatePath, destPath, { overwrite: true });
+
+  // npm strips .gitignore from published packages; template stores it as
+  // "gitignore" and we rename it back after copying.
+  const bare = path.join(destPath, "gitignore");
+  const dot = path.join(destPath, ".gitignore");
+  if (await fs.pathExists(bare)) {
+    await fs.move(bare, dot, { overwrite: true });
+  }
 }
 
 export async function copyFile(
