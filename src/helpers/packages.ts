@@ -34,6 +34,8 @@ const BASE_DEV_DEPS: Record<string, string> = {
   "@tailwindcss/postcss": "^4.2.2",
   postcss: "^8.5.8",
   // Code quality
+  eslint: "^10.1.0",
+  "eslint-config-next": "^16.2.0",
   "@eslint/eslintrc": "^3.3.5",
   prettier: "^3.8.1",
   "eslint-config-prettier": "^10.1.8",
