@@ -1,10 +1,14 @@
 import nextCoreWebVitals from "eslint-config-next/core-web-vitals";
 import eslintConfigPrettier from "eslint-config-prettier";
+import tseslint from "typescript-eslint";
 
 const eslintConfig = [
   ...nextCoreWebVitals,
   eslintConfigPrettier,
   {
+    plugins: {
+      "@typescript-eslint": tseslint.plugin,
+    },
     rules: {
       "no-console": ["error", { allow: ["warn", "error"] }],
       "no-debugger": "error",
