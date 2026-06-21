@@ -12,7 +12,8 @@
   "scripts": {
     "build": "tsup src/index.ts --format cjs --clean",
     "dev": "tsx src/index.ts",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "prepublishOnly": "pnpm audit --audit-level=moderate"
   },
   "dependencies": {
     "@clack/prompts": "^0.7.0",
