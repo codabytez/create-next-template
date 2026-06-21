@@ -44,6 +44,12 @@ jobs:
             echo "exists=false" >> $GITHUB_OUTPUT
           fi
 
+      - name: Publish to npm
+        if: steps.tag_check.outputs.exists == 'false'
+        run: pnpm publish --no-git-checks --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Create tag
         if: steps.tag_check.outputs.exists == 'false'
         run: |
@@ -64,9 +70,3 @@ jobs:
               name: `v${{ steps.pkg.outputs.version }}`,
               generate_release_notes: true,
             });
-
-      - name: Publish to npm
-        if: steps.tag_check.outputs.exists == 'false'
-        run: pnpm publish --no-git-checks --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
